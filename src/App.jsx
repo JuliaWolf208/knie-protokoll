@@ -36,8 +36,6 @@ const SECTIONS = [
     id: "abends", label: "Abends", emoji: "🌙",
     items: [
       { id: "faszie_quad", text: "Faszienrolle Quadrizeps – 2× pro Bein" },
-      { id: "faszie_itb",  text: "Faszienrolle ITB/Außenseite – 1× pro Bein" },
-      { id: "kuehlen",     text: "Kühlen – 15 Min. Kühlpack auf Patellasehne, Beine hochlagern" },
     ],
   },
 ];
