@@ -18,10 +18,7 @@ const SECTIONS = [
   {
     id: "tag", label: "Über den Tag", emoji: "🔄",
     items: [
-      { id: "pendeln_1",       text: "Pendeln (1. Mal)" },
-      { id: "pendeln_2",       text: "Pendeln (2. Mal)" },
-      { id: "pendeln_3",       text: "Pendeln (3. Mal)" },
-      { id: "scheibenwischer", text: "Scheibenwischer – entspannt" },
+      { id: "pendeln_1", text: "Pendeln" },
     ],
   },
   {
@@ -29,13 +26,12 @@ const SECTIONS = [
     items: [
       { id: "huefte_supersatz", text: "Supersatz: 15 Clamshells + 15 Beinheben, 2 Durchgänge pro Seite" },
       { id: "huefte_hipthrust", text: "Hipthrusts an der Couch – 2× 12–15, Po 2 Sek. fest" },
-      { id: "huefte_4er",       text: "4er-Dehnung – 2 Min. pro Seite (Zehen zum Schienbein!)" },
     ],
   },
   {
     id: "abends", label: "Abends", emoji: "🌙",
     items: [
-      { id: "faszie_quad", text: "Faszienrolle Quadrizeps – 2× pro Bein" },
+      { id: "faszie_quad", text: "Faszienrolle Quadrizeps – 1× pro Seite" },
     ],
   },
 ];
