@@ -40,6 +40,7 @@ const METRICS = [
   { id: "schmerz_aufstehen", label: "Schmerz Aufstehen", unit: "/10" },
   { id: "schmerz_treppe",    label: "Schmerz Treppe",    unit: "/10" },
   { id: "rad",               label: "Rad heute",          unit: "km"  },
+  { id: "gehen",             label: "Gehen heute",        unit: "km"  },
 ];
 
 const STORAGE_KEY     = "knie_protokoll_v2";
