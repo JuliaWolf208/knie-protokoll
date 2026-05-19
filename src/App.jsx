@@ -16,22 +16,21 @@ const SECTIONS = [
     ],
   },
   {
-    id: "tag", label: "Über den Tag", emoji: "🔄",
+    id: "zuhause", label: "Zuhause", emoji: "🦵",
     items: [
-      { id: "pendeln_1", text: "Pendeln" },
+      { id: "zuhause_clamshells",  text: "Clamshells und Beinheben" },
+      { id: "zuhause_hipthrust",   text: "Hipthrusts an der Couch" },
+      { id: "zuhause_plank",       text: "Plank" },
+      { id: "zuhause_sideplank",   text: "Side Plank" },
+      { id: "zuhause_deadbug",     text: "Dead Bug" },
     ],
   },
   {
-    id: "huefte", label: "Hüftprogramm (2× pro Woche)", emoji: "🦵",
+    id: "studio", label: "Studio", emoji: "🏋️",
     items: [
-      { id: "huefte_supersatz", text: "Supersatz: 15 Clamshells + 15 Beinheben, 2 Durchgänge pro Seite" },
-      { id: "huefte_hipthrust", text: "Hipthrusts an der Couch – 2× 12–15, Po 2 Sek. fest" },
-    ],
-  },
-  {
-    id: "abends", label: "Abends", emoji: "🌙",
-    items: [
-      { id: "faszie_quad", text: "Faszienrolle Quadrizeps – 1× pro Seite" },
+      { id: "studio_egym",          text: "eGym-Geräte Oberkörper" },
+      { id: "studio_pallof",        text: "Pallof Press" },
+      { id: "studio_pallof_rot",    text: "Pallof Press mit Rotation" },
     ],
   },
 ];
