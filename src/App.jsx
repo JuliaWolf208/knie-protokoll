@@ -42,8 +42,9 @@ const METRICS = [
   { id: "gehen",             label: "Gehen heute",        unit: "km"  },
 ];
 
-const STORAGE_KEY     = "knie_protokoll_v3";
-const OLD_STORAGE_KEY = "knie_protokoll_v2";
+const STORAGE_KEY = "knie_protokoll_v3";
+// Alte Schlüssel beim Start aufräumen
+["knie_protokoll_v2", "patella_protokoll_v1"].forEach(k => localStorage.removeItem(k));
 
 // ── Data helpers ───────────────────────────────────────────────────────────────
 
@@ -124,16 +125,6 @@ function loadFromStorage() {
     if (raw) {
       const p = JSON.parse(raw);
       if (p?.weeks?.length > 0) return p;
-    }
-    // Migrate from v1
-    const oldRaw = localStorage.getItem(OLD_STORAGE_KEY);
-    if (oldRaw) {
-      const old = JSON.parse(oldRaw);
-      if (Array.isArray(old) && old.length === 7) {
-        const monday = getMonday();
-        const dates  = weekDates(monday);
-        return { weeks: [{ weekStart: monday, days: old.map((d, i) => ({ ...d, date: d.date || dates[i] })) }] };
-      }
     }
   } catch {}
   return { weeks: [emptyWeek(getMonday())] };
