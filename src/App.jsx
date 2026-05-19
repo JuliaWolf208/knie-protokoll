@@ -42,8 +42,8 @@ const METRICS = [
   { id: "gehen",             label: "Gehen heute",        unit: "km"  },
 ];
 
-const STORAGE_KEY     = "knie_protokoll_v2";
-const OLD_STORAGE_KEY = "patella_protokoll_v1";
+const STORAGE_KEY     = "knie_protokoll_v3";
+const OLD_STORAGE_KEY = "knie_protokoll_v2";
 
 // ── Data helpers ───────────────────────────────────────────────────────────────
 
