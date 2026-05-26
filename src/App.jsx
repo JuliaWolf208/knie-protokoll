@@ -23,6 +23,8 @@ const SECTIONS = [
       { id: "zuhause_plank",       text: "Plank" },
       { id: "zuhause_sideplank",   text: "Side Plank" },
       { id: "zuhause_deadbug",     text: "Dead Bug" },
+      { id: "zuhause_bandrudern",  text: "Band Rudern" },
+      { id: "zuhause_facepulls",   text: "Face Pulls" },
     ],
   },
   {
