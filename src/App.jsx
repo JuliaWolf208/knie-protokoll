@@ -56,6 +56,7 @@ function emptyDay() {
   const inputs = {};
   SECTIONS.forEach(s => (s.inputs || []).forEach(i => (inputs[i.id] = "")));
   METRICS.forEach(m => (inputs[m.id] = ""));
+  checks.kniekehle_geschwollen = false;
   return { checks, inputs, notes: "", date: "" };
 }
 
@@ -150,6 +151,7 @@ function buildExportText(storageData) {
         (sec.inputs || []).forEach(inp => { if (day.inputs[inp.id]) lines.push(`  ${inp.label}: ${day.inputs[inp.id]} ${inp.unit}`); });
       });
       METRICS.forEach(m => { if (day.inputs[m.id]) lines.push(`  ${m.label}: ${day.inputs[m.id]} ${m.unit}`); });
+      if (day.checks.kniekehle_geschwollen) lines.push(`  [x] Kniekehle geschwollen`);
       if (day.notes) lines.push(`  Notizen: ${day.notes}`);
       lines.push("");
     });
@@ -589,6 +591,15 @@ export default function App() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div style={{marginTop:10}}
+                 onClick={() => toggle("kniekehle_geschwollen")}>
+              <div style={S.item(day.checks.kniekehle_geschwollen)}>
+                <div style={S.itemCircle(day.checks.kniekehle_geschwollen)}>
+                  {day.checks.kniekehle_geschwollen && <Checkmark />}
+                </div>
+                <span style={S.itemText(day.checks.kniekehle_geschwollen)}>Kniekehle geschwollen</span>
+              </div>
             </div>
           </div>
 
