@@ -30,8 +30,7 @@ const SECTIONS = [
       { id: "studio_pallof",        text: "Pallof Press" },
       { id: "studio_pallof_rot",    text: "Pallof Press mit Rotation" },
       { id: "studio_abends_header", text: "Abends", type: "header" },
-      { id: "studio_faszienrolle_vorne",  text: "Faszienrolle – Oberschenkel vorne" },
-      { id: "studio_faszienrolle_aussen", text: "Faszienrolle – Oberschenkel außen" },
+      { id: "studio_faszienrolle",  text: "Faszienrolle (Oberschenkel vorne und außen)" },
     ],
   },
 ];
