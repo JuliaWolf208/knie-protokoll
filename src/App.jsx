@@ -29,6 +29,7 @@ const SECTIONS = [
       { id: "studio_egym",          text: "eGym-Geräte Oberkörper" },
       { id: "studio_pallof",        text: "Pallof Press" },
       { id: "studio_pallof_rot",    text: "Pallof Press mit Rotation" },
+      { id: "studio_faszienrolle",  text: "Faszienrolle" },
     ],
   },
 ];
