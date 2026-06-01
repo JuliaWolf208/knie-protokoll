@@ -470,7 +470,7 @@ export default function App() {
 
         {/* ── Header ── */}
         <div style={S.header}>
-          <div style={S.headerMeta}>Phase 1 · Patellatendinopathie</div>
+          <div style={S.headerMeta}>Hoffa-Fettkörper-Entzündung</div>
           <h1 style={S.headerTitle}>
             Knie<em style={S.headerTitleEm}>protokoll</em>
           </h1>
