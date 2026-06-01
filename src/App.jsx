@@ -8,20 +8,16 @@ const SECTIONS = [
     id: "morgens", label: "Morgens", emoji: "☀️",
     items: [
       { id: "pendeln_m", text: "Pendeln – 5 Min. (sanfte Aktivierung)" },
-      { id: "wandsitz",  text: "Wandsitz – 5× 45 Sek., 2 Min. Pause" },
-    ],
-    inputs: [
-      { id: "winkel",           label: "Winkel",        unit: "°",   placeholder: "60" },
-      { id: "schmerz_wandsitz", label: "Schmerz dabei", unit: "/10", placeholder: "0"  },
     ],
   },
   {
     id: "zuhause", label: "Zuhause", emoji: "🦵",
     items: [
       { id: "zuhause_clamshells",  text: "Clamshells und Beinheben" },
-      { id: "zuhause_hipthrust",   text: "Hipthrusts an der Couch" },
+      { id: "zuhause_hueftrot",    text: "Hüftrotation in Seitlage" },
+      { id: "zuhause_tibialis",    text: "Tibialis-Aktivierung" },
+      { id: "zuhause_wadenheben",  text: "Wadenheben mit Handtuch" },
       { id: "zuhause_plank",       text: "Plank" },
-      { id: "zuhause_sideplank",   text: "Side Plank" },
       { id: "zuhause_deadbug",     text: "Dead Bug" },
       { id: "zuhause_bandrudern",  text: "Band Rudern" },
       { id: "zuhause_facepulls",   text: "Face Pulls" },
@@ -44,9 +40,9 @@ const METRICS = [
   { id: "gehen",             label: "Gehen heute",        unit: "km"  },
 ];
 
-const STORAGE_KEY = "knie_protokoll_v3";
+const STORAGE_KEY = "knie_protokoll_v4";
 // Alte Schlüssel beim Start aufräumen
-["knie_protokoll_v2", "patella_protokoll_v1"].forEach(k => localStorage.removeItem(k));
+["knie_protokoll_v3", "knie_protokoll_v2", "patella_protokoll_v1"].forEach(k => localStorage.removeItem(k));
 
 // ── Data helpers ───────────────────────────────────────────────────────────────
 
@@ -620,7 +616,7 @@ export default function App() {
 
           {/* ── Warnung ── */}
           <div style={{...S.warning, marginTop:20}}>
-            ⚠ Kein Wandsitz wenn Schmerz &gt; 3–4/10 · Kein Rad bei Schmerz · Keine Beinübungen im Studio
+            ⚠ Kein Rad bei Schmerz · Keine Beinübungen im Studio
           </div>
 
           {/* ── Reset ── */}
