@@ -29,6 +29,7 @@ const SECTIONS = [
       { id: "studio_egym",          text: "eGym-Geräte Oberkörper" },
       { id: "studio_pallof",        text: "Pallof Press" },
       { id: "studio_pallof_rot",    text: "Pallof Press mit Rotation" },
+      { id: "studio_abends_header", text: "Abends", type: "header" },
       { id: "studio_faszienrolle",  text: "Faszienrolle" },
     ],
   },
@@ -292,6 +293,7 @@ const S = {
   secHead: { display:"flex", alignItems:"center", gap:10, marginBottom:12, padding:"0 4px" },
   secIcon: { width:34, height:34, borderRadius:11, background:"rgba(255,255,255,0.50)", border:`1px solid rgba(255,255,255,0.65)`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, backdropFilter:"blur(6px)" },
   secLabel: { fontFamily:FONT_SERIF, fontWeight:400, fontSize:18, color:palette.text, letterSpacing:"-0.2px" },
+  itemSubheader: { fontFamily:FONT_SERIF, fontWeight:400, fontSize:15, color:palette.textMute, letterSpacing:"-0.1px", padding:"10px 4px 4px" },
 
   item: (checked) => ({ display:"flex", alignItems:"center", gap:13, padding:"13px 16px", marginBottom:8, borderRadius:16, background: checked ? palette.sageLight : "rgba(255,255,255,0.50)", border:`1px solid ${checked ? palette.sageBdr : "rgba(255,255,255,0.65)"}`, backdropFilter:"blur(8px)", cursor:"pointer", userSelect:"none", transition:"all 0.2s", boxShadow: checked ? "none" : "0 4px 12px rgba(58,53,48,0.04)" }),
   itemCircle: (checked) => ({ width:24, height:24, borderRadius:"50%", flexShrink:0, border: checked ? `1.5px solid ${palette.sage}` : `1.5px solid ${palette.sand}`, background: checked ? palette.sage : "rgba(255,255,255,0.5)", display:"flex", alignItems:"center", justifyContent:"center", transition:"all 0.2s" }),
@@ -536,14 +538,18 @@ export default function App() {
                 <span style={S.secLabel}>{sec.label}</span>
               </div>
 
-              {sec.items.map(item => (
-                <div key={item.id} onClick={() => toggle(item.id)} style={S.item(day.checks[item.id])}>
-                  <div style={S.itemCircle(day.checks[item.id])}>
-                    {day.checks[item.id] && <Checkmark />}
+              {sec.items.map(item =>
+                item.type === "header" ? (
+                  <div key={item.id} style={S.itemSubheader}>{item.text}</div>
+                ) : (
+                  <div key={item.id} onClick={() => toggle(item.id)} style={S.item(day.checks[item.id])}>
+                    <div style={S.itemCircle(day.checks[item.id])}>
+                      {day.checks[item.id] && <Checkmark />}
+                    </div>
+                    <span style={S.itemText(day.checks[item.id])}>{item.text}</span>
                   </div>
-                  <span style={S.itemText(day.checks[item.id])}>{item.text}</span>
-                </div>
-              ))}
+                )
+              )}
 
               {(sec.inputs || []).length > 0 && (
                 <div style={S.inputRow}>
