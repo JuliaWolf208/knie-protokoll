@@ -19,16 +19,12 @@ const SECTIONS = [
       { id: "zuhause_wadenheben",  text: "Wadenheben mit Handtuch" },
       { id: "zuhause_plank",       text: "Plank" },
       { id: "zuhause_deadbug",     text: "Dead Bug" },
-      { id: "zuhause_bandrudern",  text: "Band Rudern" },
-      { id: "zuhause_facepulls",   text: "Face Pulls" },
     ],
   },
   {
     id: "studio", label: "Studio", emoji: "🏋️",
     items: [
-      { id: "studio_egym",          text: "eGym-Geräte Oberkörper" },
-      { id: "studio_pallof",        text: "Pallof Press" },
-      { id: "studio_pallof_rot",    text: "Pallof Press mit Rotation" },
+      { id: "studio_egym",          text: "Egym" },
       { id: "studio_abends_header", text: "Abends", type: "header" },
       { id: "studio_faszienrolle",  text: "Faszienrolle (Oberschenkel vorne und außen)" },
     ],
