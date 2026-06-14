@@ -39,6 +39,7 @@ const METRICS = [
 ];
 
 const STORAGE_KEY = "knie_protokoll_v5";
+const START_DATE  = "2026-06-15";
 // Alte Schlüssel beim Start aufräumen
 ["knie_protokoll_v4", "knie_protokoll_v3", "knie_protokoll_v2", "patella_protokoll_v1"].forEach(k => localStorage.removeItem(k));
 
@@ -109,9 +110,10 @@ function todayIndex() {
 
 function ensureCurrentWeek(storageData) {
   const monday = getMonday();
-  const idx = storageData.weeks.findIndex(w => w.weekStart === monday);
+  const effectiveMonday = monday < START_DATE ? getMonday(START_DATE) : monday;
+  const idx = storageData.weeks.findIndex(w => w.weekStart === effectiveMonday);
   if (idx === -1) {
-    return { ...storageData, weeks: [...storageData.weeks, emptyWeek(monday)] };
+    return { ...storageData, weeks: [...storageData.weeks, emptyWeek(effectiveMonday)] };
   }
   return storageData;
 }
@@ -124,7 +126,7 @@ function loadFromStorage() {
       if (p?.weeks?.length > 0) return p;
     }
   } catch {}
-  return { weeks: [emptyWeek(getMonday("2026-06-15"))] };
+  return { weeks: [emptyWeek(getMonday(START_DATE))] };
 }
 
 function saveToStorage(d) {
