@@ -13,8 +13,9 @@ const SECTIONS = [
   {
     id: "zuhause", label: "Zuhause", emoji: "🦵",
     items: [
-      { id: "zuhause_clamshells",  text: "Clamshells und Beinheben" },
-      { id: "zuhause_hueftrot",    text: "Hüftrotation in Seitlage" },
+      { id: "zuhause_clamshells",  text: "Clamshells" },
+      { id: "zuhause_hueftrot",    text: "Hüftrotation + Seitstütz" },
+      { id: "zuhause_hipthrust",   text: "Hipthrust" },
       { id: "zuhause_tibialis",    text: "Tibialis-Aktivierung" },
       { id: "zuhause_wadenheben",  text: "Wadenheben mit Handtuch" },
       { id: "zuhause_plank",       text: "Plank" },
