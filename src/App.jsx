@@ -5,19 +5,14 @@ const FULL_DAYS = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samsta
 
 const SECTIONS = [
   {
-    id: "morgens", label: "Morgens", emoji: "☀️",
-    items: [
-      { id: "pendeln_m", text: "Pendeln – 5 Min. (sanfte Aktivierung)" },
-    ],
-  },
-  {
     id: "zuhause", label: "Zuhause", emoji: "🦵",
     items: [
-      { id: "zuhause_clamshells",  text: "Clamshells" },
-      { id: "zuhause_hueftrot",    text: "Hüftrotation + Seitstütz" },
-      { id: "zuhause_hipthrust",   text: "Hipthrust" },
       { id: "zuhause_tibialis",    text: "Tibialis-Aktivierung" },
       { id: "zuhause_wadenheben",  text: "Wadenheben mit Handtuch" },
+      { id: "zuhause_clamshells",  text: "Clamshells" },
+      { id: "zuhause_hueftrot",    text: "Hüftrotation in Seitlage" },
+      { id: "zuhause_hipthrust",   text: "Hipthrust" },
+      { id: "zuhause_wandsitz",    text: "Wandsitz + Kniebeuge" },
       { id: "zuhause_plank",       text: "Plank" },
       { id: "zuhause_deadbug",     text: "Dead Bug" },
     ],
@@ -27,6 +22,7 @@ const SECTIONS = [
     items: [
       { id: "studio_egym",          text: "Egym" },
       { id: "studio_abends_header", text: "Abends", type: "header" },
+      { id: "studio_omega3",        text: "Omega 3" },
       { id: "studio_faszienrolle",  text: "Faszienrolle (Oberschenkel vorne und außen)" },
     ],
   },
@@ -34,13 +30,14 @@ const SECTIONS = [
 
 const METRICS = [
   { id: "schmerz_aufstehen", label: "Schmerz Aufstehen", unit: "/10" },
-  { id: "schmerz_treppe",    label: "Schmerz Treppe",    unit: "/10" },
   { id: "rad",               label: "Rad heute",          unit: "km"  },
   { id: "gehen",             label: "Gehen heute",        unit: "km"  },
 ];
 
+// Protokoll läuft erst ab dieser Woche – ältere Wochen werden ausgeblendet
+const START_DATE = "2026-07-13";
+
 const STORAGE_KEY = "knie_protokoll_v5";
-const START_DATE  = "2026-06-15";
 // Alte Schlüssel beim Start aufräumen
 ["knie_protokoll_v4", "knie_protokoll_v3", "knie_protokoll_v2", "patella_protokoll_v1"].forEach(k => localStorage.removeItem(k));
 
@@ -111,12 +108,15 @@ function todayIndex() {
 
 function ensureCurrentWeek(storageData) {
   const monday = getMonday();
-  const effectiveMonday = monday < START_DATE ? getMonday(START_DATE) : monday;
-  const idx = storageData.weeks.findIndex(w => w.weekStart === effectiveMonday);
+  const idx = storageData.weeks.findIndex(w => w.weekStart === monday);
   if (idx === -1) {
-    return { ...storageData, weeks: [...storageData.weeks, emptyWeek(effectiveMonday)] };
+    return { ...storageData, weeks: [...storageData.weeks, emptyWeek(monday)] };
   }
   return storageData;
+}
+
+function filterWeeksFromStart(weeks) {
+  return weeks.filter(w => w.weekStart >= START_DATE);
 }
 
 function loadFromStorage() {
@@ -124,10 +124,13 @@ function loadFromStorage() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const p = JSON.parse(raw);
-      if (p?.weeks?.length > 0) return p;
+      if (p?.weeks?.length > 0) {
+        const weeks = filterWeeksFromStart(p.weeks);
+        if (weeks.length > 0) return { ...p, weeks };
+      }
     }
   } catch {}
-  return { weeks: [emptyWeek(getMonday(START_DATE))] };
+  return { weeks: [emptyWeek(getMonday())] };
 }
 
 function saveToStorage(d) {
@@ -394,8 +397,10 @@ export default function App() {
     });
 
   const handleImport = () => {
-    const result = parseImport(importText);
-    if (result) {
+    const parsed = parseImport(importText);
+    if (parsed) {
+      const weeks = filterWeeksFromStart(parsed.weeks);
+      const result = { ...parsed, weeks: weeks.length > 0 ? weeks : [emptyWeek(getMonday())] };
       setData(result);
       const idx = result.weeks.findIndex(w => w.weekStart === getMonday());
       setActiveWeekIndex(idx >= 0 ? idx : result.weeks.length - 1);
